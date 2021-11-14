@@ -1,87 +1,36 @@
-import React, { useEffect } from 'react';
-import {  View, Text } from 'react-native';
-import * as Contacts from 'expo-contacts';
+import * as React from 'react';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Home from "./src/home"
+import About from "./src/about"
+import Profile from "./src/profile"
+import Contact  from './src/contact';
+import ImgCam from './src/imgCam';
+import Imgpic from './src/imgpic';
+import Docpic from './src/docpic';
+
+
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  useEffect(() => {
-    (async () => {
-      const { status } = await Contacts.requestPermissionsAsync();
-      if (status === 'granted') {
-        const { data } = await Contacts.getContactsAsync({
-          fields: [Contacts.Fields.Emails],
-        });
-
-        if (data.length > 0) {
-          const contact = data[0];
-          console.log(contact);
-        }
-      }
-    })();
-  }, []);
-
   return (
-    <View >
-      <Text>Contacts Module Example</Text>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="About" component={About} />
+        <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen name="Contact" component={Contact} />
+        <Tab.Screen name="img-Cam"  component={ImgCam} />
+        <Tab.Screen name="img-pic"  component={Imgpic} />
+        <Tab.Screen name="Doc-pic"  component={Docpic} />
+
+
+
+
+
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-
-  //   <View style={{ flex: 1, flexDirection: "row", justifyContent:"center", alignItems: "center" }}>
-
-  // <View >
-    
-  //     <View style={style.veiw1}><Text>1 Veiw</Text></View>
-  //     <View style={style.veiw2}><Text>2 Veiw</Text></View>
-  //     <View style={style.veiw3}><Text>3 Veiw</Text></View>
-     
-
-  // </View>
-  //  <View>
-    
-  //     <View style={style.veiw1}><Text>1 Veiw</Text></View>
-  //     <View style={style.veiw2}><Text>2 Veiw</Text></View>
-  //     <View style={style.veiw3}><Text>3 Veiw</Text></View>
-     
-
-  // </View> <View >
-    
-  //     <View style={style.veiw1}><Text>1 Veiw</Text></View>
-  //     <View style={style.veiw2}><Text>2 Veiw</Text></View>
-  //     <View style={style.veiw3}><Text>3 Veiw</Text></View>
-     
-
-  // </View> 
-  //   </View>
-
-
-// const style=StyleSheet.create({
-// veiw1:{
-//   backgroundColor:"red",
-//   width:100,
-//   height:100,
-//   borderColor:"black",
-//     borderWidth: 1,
-//      borderStyle: 'solid'
-
-// },
-// veiw2:{
-//   backgroundColor:"green",
-//   width:100,
-//   height:100,
-//   borderColor: "black",
-//   borderWidth: 1, 
-//   borderStyle: 'solid'
-  
-
-// },
-// veiw3:{
-//   backgroundColor:"grey",
-//   width:100,
-//   height:100,
-//   borderColor:"black",
-//   borderWidth: 1,
-//    borderStyle: 'solid'
-  
-// }
-// })
